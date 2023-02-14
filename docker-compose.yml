@@ -13,11 +13,6 @@ services:
         container_name: asgard_php_fpm
         restart: always
 
-    asgard_db:
-        container_name: asgard_db
-        image: amazon/dynamodb-local:latest
-        restart: always
-
     asgard_node:
         container_name: asgard_node
         build:
