@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+    asgard_nginx:
+        container_name: asgard_nginx
+        restart: always
+        depends_on:
+            - asgard_php_fpm
+        links:
+            - asgard_php_fpm
+        image: nginx:alpine
+
+    asgard_php_fpm:
+        container_name: asgard_php_fpm
+        restart: always
+
+    asgard_db:
+        container_name: asgard_db
+        image: amazon/dynamodb-local:latest
+        restart: always
+
+    asgard_node:
+        container_name: asgard_node
+        build:
+            context: ./.docker/node
+            dockerfile: Dockerfile
+        stdin_open: true
+        tty: true
