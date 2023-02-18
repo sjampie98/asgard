@@ -18,7 +18,13 @@ class Category extends Model
      * @var string[]
      */
     protected $fillable = [
+        'id',
         'name',
         'description',
     ];
+
+    public function image()
+    {
+        return $this->belongsTo(Images::class, 'categoryId', 'id');
+    }
 }

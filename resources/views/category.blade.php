@@ -39,7 +39,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item menu-open">
-                        <a href="/home" class="nav-link active">
+                        <a href="/home" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Upload image
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li class="nav-item menu-open">
-                        <a href="/category" class="nav-link">
+                        <a href="/category" class="nav-link active">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Add Category
@@ -60,76 +60,50 @@
             </nav>
         </div>
     </aside>
+
     <div class="content-wrapper" style="min-height: 505px;">
         <div class="content">
+
+
+
             <div class="container-fluid">
                 <div class="container mt-4">
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($categories as $category)
+                            <tr>
 
-                    <h2 align="center" class="card-body">Upload image</h2>
-                    <form method="POST" enctype="multipart/form-data" id="upload-image"
-                          action="{{ url('upload-image') }}">
+                                <td><a href="/view/{{$category['id']}}">{{ $category['name'] }}</a></td>
+                                    <td><a href="/view/{{$category['id']}}">{{ $category['description'] ?? 'null' }} </a></td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <h2 align="center" class="card-body">Add Category</h2>
+                    <form method="POST" enctype="multipart/form-data" id="category" action="{{ url('add-category') }}">
                         @csrf
-
-                        <div>
-                            <img id="preview-image-before-upload"
-                                 style="max-height: 200px;">
-                        </div>
-                        @error('image')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                        <div class="row">
-
-                            <label for="image">File input</label>
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="image" name="image">
-                                    <label class="custom-file-label" for="image">Choose file</label>
-                                </div>
+                            <div class="form-group">
+                                <label for="category">Category name</label>
+                                <input name="category" type="text" class="form-control" id="category" placeholder="Category name">
                             </div>
-                        </div>
                         <br>
-                        <div class="row">
-                            <label for="category">Category</label>
-                            <select class="form-control select2bs4 select2-hidden-accessible" style="width: 100%;"
-                                    data-select2-id="category" tabindex="-1" aria-hidden="true" name="category"
-                                    id="category">
-                                <option selected="selected" value="" data-select2-id="category">None</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <br>
-                        <div>
-                            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-                        </div>
+                            <button type="submit" class="btn btn-primary" id="submit">Add</button>
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
-
     <footer class="main-footer">
         <strong>Copyright ©<a href="/">Asgard</a>.</strong> All rights reserved.
     </footer>
-    <div id="sidebar-overlay"></div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function (e) {
-            $('#image').change(function () {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    $('#preview-image-before-upload').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-            });
-        });
-
-    </script>
 </div>
 </body>
 </html>

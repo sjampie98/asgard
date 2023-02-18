@@ -4,7 +4,9 @@ namespace App\Http\Services;
 
 use App\Http\Requests\ImageUploadRequest;
 use App\Models\Images;
-use Illuminate\Http\Request;
+use Aws\AwsClient;
+use Aws\S3\S3Client;
+use Illuminate\Support\Facades\Storage;
 
 class ImageUploadService
 {
@@ -47,12 +49,13 @@ class ImageUploadService
      */
     private function saveStorage($data)
     {
-        $name = $data->file('image')->getClientOriginalName();
-        $path = $data->file('image')->store('public/images');
+        $filenamewithextension = $data->file('image')->getClientOriginalName();
+        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+        $info = Storage::disk('s3')->put('images', $data->file('image'));
 
         return [
-            'name' => $name,
-            'path' => $path
+            'name' => $filename,
+            'path' => $info
         ];
     }
 }
