@@ -98,7 +98,7 @@
         <nav class="header navbar navbar-expand navbar-white navbar-light">
             <ul class="navbar-nav ml-left">
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/" class="nav-link"><b>Asgard</b></a>
+                    <a href="/" class="nav-link"><b><h4>Asgard</h4></b></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto text-black">
