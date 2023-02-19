@@ -10,21 +10,19 @@
 
     /* force scrollbar */
     html {
-        background: black;
+        background: #202028;
     }
 
     body {
-        background: black;
         margin: 0;
         font-family: sans-serif;
+        background: #202028;
     }
-
-    /* ---- grid ---- */
 
     .grid {
         align-content: center;
         width: 60%;
-        background: #000000;
+        background: #202028;
         margin-left: 20%;
         margin-right: 20%;
     }
@@ -70,6 +68,7 @@
             opacity: 1;
         }
     }
+
     @keyframes fade-in {
         0% {
             -webkit-transform: translateY(50px);
@@ -86,39 +85,72 @@
     .fixed {
         position: fixed;
         z-index: 100;
-        top: 0;
         display: block;
         width: 100%;
-        height: 3%;
+    }
+
+    .navbar-custom {
+        background: #202028;
+    }
+
+    .header {
+        width: 100%;
+        height: 1%;
+        padding: 0;
+    }
+
+    .header-img {
+        z-index: 100;
+        width: 5%;
+        height: 5%;
+    }
+
+    .header-img-text {
+        padding-top: 1%;
+        padding-bottom: 1%;
+        margin-left: -0.8%;
+        margin-bottom: -9px;
+        z-index: 100;
+        width: 15%;
+        height: 15%;
+    }
+
+    .navbar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+    }
+
+    .text {
+        font-family: Anders, serif;
+        color: white;
     }
 </style>
 <body>
 <div class="fixed_block_position">
     <div class="fixed_block">
-        <nav class="header navbar navbar-expand navbar-white navbar-light">
-            <ul class="navbar-nav ml-left">
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/" class="nav-link"><b><h4>Asgard</h4></b></a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto text-black">
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="/contact" class="nav-link">Contact</a>
-                </li>
-            </ul>
+        <nav class="header navbar navbar-custom">
+            <a href="/">
+                <img class="header-img" src="{{ Storage::disk('s3')->url('images/logo.png') }}">
+                <img class="header-img-text" src="{{ Storage::disk('s3')->url('images/logo_text.png') }}">
+            </a>
+            <a href="/contact" class="header-text nav-link text"><b>Contact</b></a>
+            <a href="/contact" class="header-text nav-link text"><b>About</b></a>
         </nav>
     </div>
 </div>
-
 <div class="grid">
     <div class="grid-sizer"></div>
     @foreach($images as $image)
         <div class="grid-item">
-            <img  src="{{ Storage::disk('s3')->url($image->path) }}">
+            <a href="/view/{{$image->categoryId}}">
+                <img src="{{ Storage::disk('s3')->url($image->path) }}"></a>
         </div>
     @endforeach
-
 </div>
+<footer align="center">Asgard render</footer>
 <script
     src="https://code.jquery.com/jquery-3.6.3.min.js"
     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
@@ -174,7 +206,7 @@
 
         $(".fixed_block_position").css({
             "width": element.outerWidth(),
-            "height": element.outerHeight()
+            "height": element.outerHeight(),
         });
         $(window).scroll(function () {
             if ($(window).scrollTop() > height_el) {
@@ -185,8 +217,66 @@
         });
     });
 
+    window.onscroll = function () {
+        var scrolled = window.pageYOffset || document.documentElement.scrollTop; // Получаем положение скролла
+        if (scrolled >= 900) {
+            // Если прокрутка есть, то делаем блок прозрачным
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0)";
+            document.querySelector('.header-img-text').style.opacity = '0';
+        } else if (scrolled >= 700) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.35)";
+            document.querySelector('.header-img-text').style.opacity = '0.35';
+        } else if (scrolled >= 600 && scrolled < 700) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.4)";
+            document.querySelector('.header-img-text').style.opacity = '0.4';
+
+        } else if (scrolled >= 550 && scrolled < 600) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.45)";
+            document.querySelector('.header-img-text').style.opacity = '0.45';
+
+        } else if (scrolled >= 500 && scrolled < 550) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.5)";
+            document.querySelector('.header-img-text').style.opacity = '0.5';
+        } else if (scrolled >= 450 && scrolled < 500) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.55)";
+            document.querySelector('.header-img-text').style.opacity = '0.55';
+
+        } else if (scrolled >= 400 && scrolled < 450) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.6)";
+            document.querySelector('.header-img-text').style.opacity = '0.6';
+
+        } else if (scrolled >= 350 && scrolled < 400) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.65)";
+            document.querySelector('.header-img-text').style.opacity = '0.65';
+
+        } else if (scrolled >= 300 && scrolled < 350) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.7)";
+            document.querySelector('.header-img-text').style.opacity = '0.7';
+
+        } else if (scrolled >= 250 && scrolled < 300) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.75)";
+            document.querySelector('.header-img-text').style.opacity = '0.75';
+
+        } else if (scrolled >= 200 && scrolled < 250) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.8)";
+            document.querySelector('.header-img-text').style.opacity = '0.8';
+
+        } else if (scrolled >= 150 && scrolled < 200) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.85)";
+            document.querySelector('.header-img-text').style.opacity = '0.85';
+
+        } else if (scrolled >= 100 && scrolled < 150) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,0.9)";
+            document.querySelector('.header-img-text').style.opacity = '0.9';
+
+        } else if (scrolled >= 0 && scrolled < 100) {
+            document.querySelector(".navbar-custom").style.background = "rgba(32,32,40,1)";
+            document.querySelector('.header-img-text').style.opacity = '1';
+
+        }
+    };
 </script>
-<script type="text/javascript" src="https://spikmi.org/Widget?Id=16282"></script>
+<script type="text/javascript" src="https://spikmi.org/Widget?Id=16283"></script>
 
 </body>
 </html>
