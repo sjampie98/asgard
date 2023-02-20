@@ -25,6 +25,6 @@ class HomeController extends Controller
     {
         $categories = Category::all()->toArray();
 
-        return view('home', compact('categories'));
+        return view('admin.home', compact('categories'));
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EditPreviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/image-upload-preview', [ImageUploadController::class, 'index']);
 Route::post('/upload-image', [ImageUploadController::class, 'store']);
 Route::get('/category', [CategoryController::class, 'index'])->name('category');
+Route::get('/edit-preview', [EditPreviewController::class, 'index'])->name('edit-preview');
+Route::post('/edit-preview', [EditPreviewController::class, 'editSort'])->name('edit-sort-preview');
 Route::post('/add-category', [CategoryController::class, 'add'])->name('add-category');
 
 

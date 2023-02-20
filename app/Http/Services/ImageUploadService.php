@@ -4,8 +4,6 @@ namespace App\Http\Services;
 
 use App\Http\Requests\ImageUploadRequest;
 use App\Models\Images;
-use Aws\AwsClient;
-use Aws\S3\S3Client;
 use Illuminate\Support\Facades\Storage;
 
 class ImageUploadService

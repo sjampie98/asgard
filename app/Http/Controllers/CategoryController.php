@@ -18,7 +18,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all()->toArray();
 
-        return view('category', compact('categories'));
+        return view('admin.category', compact('categories'));
     }
 
     public function add(Request $request)

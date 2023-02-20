@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Images;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use function GuzzleHttp\Promise\all;
 
 class PreviewController extends Controller
 {
