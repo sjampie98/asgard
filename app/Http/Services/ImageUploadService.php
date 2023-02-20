@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Http\Requests\ImageUploadRequest;
 use App\Models\Images;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ImageUploadService
@@ -55,5 +56,28 @@ class ImageUploadService
             'name' => $filename,
             'path' => $info
         ];
+    }
+
+    public function editPreview($targetId, $endTarget)
+    {
+        $target = DB::table('images')
+            ->where('id', '=', $targetId)
+            ->get();
+        $endtarget = DB::table('images')
+            ->where('id', '=', $endTarget)
+            ->get();
+
+        Images::updateOrCreate([
+            'id' => $target[0]->id
+        ],[
+            'sort' => $endtarget[0]->sort
+        ]);
+        Images::updateOrCreate([
+            'id' => $endtarget[0]->id
+        ],[
+            'sort' => $target[0]->sort
+        ]);
+
+        return true;
     }
 }

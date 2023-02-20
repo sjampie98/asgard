@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\ImageUploadService;
 use App\Models\Images;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class EditPreviewController extends Controller
 {
-    public function __construct()
+    public function __construct(ImageUploadService $imageUploadService)
     {
         $this->middleware('auth');
+        $this->imageUploadService = $imageUploadService;
     }
 
     public function index()
@@ -29,23 +31,7 @@ class EditPreviewController extends Controller
 
     public function editSort(Request $request)
     {
-        $target = DB::table('images')
-            ->where('id', '=', $request->input('targetId'))
-            ->get();
-        $endtarget = DB::table('images')
-            ->where('id', '=', $request->input('endTarget'))
-            ->get();
-
-        Images::updateOrCreate([
-            'id' => $target[0]->id
-        ],[
-            'sort' => $endtarget[0]->sort
-        ]);
-        Images::updateOrCreate([
-            'id' => $endtarget[0]->id
-        ],[
-            'sort' => $target[0]->sort
-        ]);
+        $this->imageUploadService->editPreview($request->input('targetId'), $request->input('endTarget'));
 
         return redirect('edit-preview')->with('status', 'done');
     }
