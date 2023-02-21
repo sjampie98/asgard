@@ -21,7 +21,8 @@ use App\Http\Controllers\EditPreviewController;
 */
 Route::get('/', [PreviewController::class, 'preview'])->name('preview');
 Route::get('/view/{id}', [PreviewController::class, 'previewCategory'])->name('previewCategory');
-Route::get('/contacts', [PreviewController::class, 'contacts'])->name('contacts');
+Route::get('/contact', [PreviewController::class, 'contact'])->name('contact');
+Route::post('/contact', [PreviewController::class, 'sendContact'])->name('post-contact');
 
 Auth::routes();
 

@@ -97,8 +97,12 @@
     }
 
     .text {
-        font-family: Anders, serif;
         color: white;
+    }
+    .footer {
+        color: white;
+        height: 20px;
+        font-size: 0.75rem;
     }
     @yield('style')
 </style>
@@ -116,8 +120,7 @@
     </div>
 </div>
 @yield('content')
-
-<footer>Asgard render</footer>
+<footer align="center" class="footer">(c) Сopyright 2023 ASGARD RENDER. All rights reserved.</footer>
 
 <script type="text/javascript" src="https://spikmi.org/Widget?Id=16283"></script>
 <script
@@ -237,6 +240,7 @@
         }
     };
 </script>
+
 @yield('script')
 </body>
 </html>
