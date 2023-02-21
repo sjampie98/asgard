@@ -47,7 +47,9 @@ class PreviewController extends Controller
      */
     public function contact()
     {
-        return view('contact');
+        $contact = $this->contactService->index();
+
+        return view('contact', compact('contact'));
     }
 
     /**

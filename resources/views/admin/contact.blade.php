@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="/category" class="nav-link active">
+                    <a href="/category" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Add Category
@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="/edit-contact" class="nav-link">
+                    <a href="/edit-contact" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Edit Contact
@@ -49,37 +49,19 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="container mt-4">
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Description</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($categories as $category)
-                                <tr>
-
-                                    <td><a href="/view/{{$category['id']}}">{{ $category['name'] }}</a></td>
-                                    <td>
-                                        <a href="/view/{{$category['id']}}">{{ $category['description'] ?? 'null' }} </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <h2 align="center" class="card-body">Add Category</h2>
-                    <form method="POST" enctype="multipart/form-data" id="category" action="{{ url('add-category') }}">
+                    <h2 align="center" class="card-body">Edit Contact Info</h2>
+                    <form method="POST" enctype="multipart/form-data" id="contact" action="{{ url('edit-contact') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="category">Category name</label>
-                            <input name="category" type="text" class="form-control" id="category"
-                                   placeholder="Category name">
+                            <label for="contact">Address</label>
+                            <input name="address" type="text" class="form-control" id="address" placeholder="{{ $contact->address }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Phone</label>
+                            <input name="phone" type="text" class="form-control" id="phone" placeholder="{{ $contact->phone }}">
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-primary" id="submit">Add</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Edit</button>
                     </form>
                 </div>
             </div>

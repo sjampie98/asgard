@@ -2,8 +2,14 @@
 
 namespace App\Http\Services;
 
+use App\Models\Contact;
+
 class ContactService
 {
+    public function index()
+    {
+        return Contact::all()->last();
+    }
 
     /**
      * @param $data
@@ -26,6 +32,22 @@ class ContactService
         catch (\Exception $e){
 
         }
+
+        return true;
+    }
+
+    /**
+     * @param $data
+     * @return true
+     */
+    public function editContact($data)
+    {
+        Contact::updateOrCreate([
+            'id' => 1
+        ],[
+            'address' => $data['address'],
+            'phone' => $data['phone']
+        ]);
 
         return true;
     }

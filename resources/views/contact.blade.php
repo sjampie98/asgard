@@ -188,8 +188,8 @@
     <div class="col-10  justify-content-right">
         <div>
             <h2>Asgard<strong>Render</strong></h2>
-            <p class="lead mb-5">123 Testing Ave, Testtown, 9876 NA<br>
-                Phone: +1 234 56789012
+            <p class="lead mb-5">{{ $contact->address }}<br>
+                Phone: {{ $contact->phone }}
             </p>
         </div>
     </div>

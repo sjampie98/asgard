@@ -31,6 +31,15 @@
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item menu-open">
+                        <a href="/edit-contact" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Edit Contact
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
