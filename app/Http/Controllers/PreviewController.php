@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Services\ContactService;
 use App\Http\Services\PreviewService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class PreviewController extends Controller
 {
+    /**
+     * @param ContactService $contactService
+     * @param PreviewService $previewService
+     */
     public function __construct(
         ContactService $contactService,
         PreviewService $previewService

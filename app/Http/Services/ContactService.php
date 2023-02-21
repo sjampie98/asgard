@@ -29,5 +29,4 @@ class ContactService
 
         return true;
     }
-
 }

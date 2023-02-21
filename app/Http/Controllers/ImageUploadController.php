@@ -7,14 +7,19 @@ use App\Http\Services\ImageUploadService;
 
 class ImageUploadController extends Controller
 {
+    /**
+     * @var ImageUploadService
+     */
     private ImageUploadService $imageUploadService;
 
+    /**
+     * @param ImageUploadService $imageUploadService
+     */
     public function __construct(ImageUploadService $imageUploadService)
     {
         $this->middleware('auth');
         $this->imageUploadService = $imageUploadService;
     }
-
 
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View

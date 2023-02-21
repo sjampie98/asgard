@@ -58,6 +58,11 @@ class ImageUploadService
         ];
     }
 
+    /**
+     * @param $targetId
+     * @param $endTarget
+     * @return true
+     */
     public function editPreview($targetId, $endTarget)
     {
         $target = DB::table('images')

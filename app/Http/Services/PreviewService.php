@@ -34,4 +34,19 @@ class PreviewService
             ->orderBy('sort')
             ->get();
     }
+
+    /**
+     * @return mixed
+     */
+    public function editPreview()
+    {
+        return DB::table('images')
+            ->where('sort', '!=', 0)
+            ->join('category', 'images.categoryId', '=', 'category.id')
+
+            ->select('images.*', 'categoryId')
+            ->orderBy('sort')
+            ->get()
+            ->toArray();
+    }
 }
